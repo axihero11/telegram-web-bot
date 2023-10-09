@@ -4,21 +4,25 @@ import Button from "../button/button";
 
 const Card = (props) => {
     const { course, onAddItem, onRemoveItem } = props;
-    const [count, setCount] = useState(0)
-
-
+    const [count, setCount] = useState(0);
     const handleIncrement = () => {
-        setCount(prev=> prev + 1);
-        onAddItem(course)
-    }
+        setCount((prev) => prev + 1);
+        onAddItem(course);
+    };
     const handleDecrement = () => {
-        setCount((prev)=> prev - 1 );
-        onRemoveItem(course)
-    }
+        setCount((prev) => prev - 1);
+        onRemoveItem(course);
+    };
     return (
         <>
             <div className="card">
-                <span className={`${count !== 0 ? 'card__badge' : 'card__badge-hidden'}`}>{count}</span>
+                <span
+                    className={`${
+                        count !== 0 ? "card__badge" : "card__badge-hidden"
+                    }`}
+                >
+                    {count}
+                </span>
                 <div className="img__container">
                     <img
                         src={course.Image}
