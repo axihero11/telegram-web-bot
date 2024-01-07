@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../button/button";
+import Button from "../button/Button";
 import "./cart.css";
 import { totalPrice } from "../units/total-price";
 
