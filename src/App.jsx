@@ -1,7 +1,7 @@
 import Card from "./components/card/Card";
 import Cart from "./components/cart/Cart";
 import { getData } from "./constants/db";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 
 const telegram = window.Telegram.WebApp;
@@ -49,6 +49,14 @@ function App() {
 		telegram.MainButton.text = "Sotib olish :)",
 		telegram.MainButton.show()
 	}
+    const onSendData = useCallback(() => {
+       telegram.sendData(JSON.stringify(cartItems));
+    },[cartItems])
+
+    useEffect(()=> {
+        telegram.onEvent('mainButtonCliked',onSendData)
+        return () => telegram.offEvent('mainButtonCliked',onSendData)
+    },[onSendData])
 
 
     return (
