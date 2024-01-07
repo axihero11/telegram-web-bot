@@ -45,29 +45,27 @@ function App() {
             setCartItems(newData);
         }
     };
-	const onCheckout = () => {
-		telegram.MainButton.text = "Sotib olish :)",
-		telegram.MainButton.show()
-	}
+    const onCheckout = () => {
+        telegram.MainButton.text = "Sotib olish :)",
+            telegram.MainButton.show()
+    }
     const onSendData = useCallback(() => {
-       telegram.sendData(JSON.stringify(cartItems));
-    },[cartItems])
+        telegram.sendData(JSON.stringify(cartItems));
+    }, [cartItems])
 
-    useEffect(()=> {
-        telegram.onEvent('mainButtonCliked',onSendData)
-        return () => telegram.offEvent('mainButtonCliked',onSendData)
-    },[onSendData])
-
-
+    useEffect(() => {
+        telegram.onEvent('mainButtonClicked', onSendData)
+        return () => telegram.offEvent('mainButtonClicked', onSendData)
+    }, [onSendData])
     return (
         <>
             <h1 className="heading">Yupiter Team Kurslari</h1>
-            <Cart cartItems={cartItems} onCheckout={onCheckout}/>
+            <Cart cartItems={cartItems} onCheckout={onCheckout} />
             <div className="cards__continer">
-                {courses.map((course, index) => {
+                {courses.map((course) => {
                     return (
                         <Card
-                            key={index}
+                            key={course.id}
                             course={course}
                             onAddItem={onAddItem}
                             onRemoveItem={onRemoveItem}
